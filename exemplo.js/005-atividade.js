@@ -12,7 +12,7 @@ let n2 = entrada('Digite sua segunda nota: ');
 
 let media;
 
-media = (parseInt(n1)+parseInt(n2)/2);
+media = ((parseFloat(n1) + parseFloat(n2))/2);
 
 if (media < 5){
     console.log('A sua Nota é I')
