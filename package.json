@@ -10,11 +10,17 @@
     "type": "git",
     "url": "git+https://github.com/YudiNamaizawa/intro-javascript-pami.git"
   },
-  "keywords": ["Revisão", "Java-Script"],
+  "keywords": [
+    "Revisão",
+    "Java-Script"
+  ],
   "author": "Yudi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/YudiNamaizawa/intro-javascript-pami/issues"
   },
-  "homepage": "https://github.com/YudiNamaizawa/intro-javascript-pami#readme"
+  "homepage": "https://github.com/YudiNamaizawa/intro-javascript-pami#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }
