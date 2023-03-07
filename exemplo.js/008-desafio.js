@@ -17,7 +17,7 @@ do {
     n = parseFloat(valor);
     
     if (!isNaN(n)){
-        soma =+ n;
+        soma += n;
     }
 
 } while (valor !== 'fim');
