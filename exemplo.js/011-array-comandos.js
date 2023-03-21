@@ -22,6 +22,8 @@ let opcao = 0;
 
 do {
     
+    console.log('');
+    console.log('---------------------------------');
     console.log('LISTA DE TAREFAS');
     console.log('1 - Listar tarefas pendentes');
     console.log('2 - Listar tarefas realizadas');
@@ -29,86 +31,96 @@ do {
     console.log('4 - Concluir tarefa');
     console.log('5 - Excluir tarefa');
     console.log('0 - Encerrar');
-    opcao = entrada('Selecione uma opção:');
+    opcao = entrada('Selecione uma opção:'); 
 
     if (opcao == 1) {
-
+        console.log('---------------------------------');
         console.log('Listando tarefas não realizadas');
-        console.log('----------------------------------')
-        for (var cont in tarefas){
-            if(tarefas[cont].realizada == false){
-            console.log('Id: ' + tarefas[cont].id);
-            console.log('Tarefa ' + tarefas[cont].tarefa);
-            console.log('Realizada: ' + tarefas[cont].realizada);
-            console.log('--------------------------');
-            }
-        }    
+        for (let cont in tarefas) {
+            if (tarefas[cont].realizada == false) {
+                console.log('ID: ' + tarefas[cont].id);
+                console.log('TAREFA: ' + tarefas[cont].tarefa);
+                console.log('REALIZADA: ' + tarefas[cont].realizada);
+                console.log('---------------------------------');
+            }            
+        }
+        entrada();
     }
 
     if (opcao == 2) {
-
+        console.log('---------------------------------');
         console.log('Listando tarefas realizadas');
-        console.log('----------------------------------')
-        for (var cont in tarefas){
-            if(tarefas[cont].realizada == true){
-            console.log('Id: ' + tarefas[cont].id);
-            console.log('Tarefa ' + tarefas[cont].tarefa);
-            console.log('Realizada: ' + tarefas[cont].realizada);
-            console.log('--------------------------');
+        for (let cont in tarefas) {
+            if (tarefas[cont].realizada == true) {
+                console.log('ID: ' + tarefas[cont].id);
+                console.log('TAREFA: ' + tarefas[cont].tarefa);
+                console.log('REALIZADA: ' + tarefas[cont].realizada);
+                console.log('---------------------------------');
             }
-        }    
+        }   
+        entrada();
     }
-    
-    if (opcao == 3) {
-        console.log('Adicionando Novas Tarefas');
-        console.log('------------------------------------')
-        let novatarefa = entrada('Adicione uma nova tarefa: ');
-        const id = tarefas.length;
-        tarefas.push({
-            id: id + 1, 
-            tarefa: novatarefa, 
-            realizada: false
-        })
 
+    if (opcao == 3) {
+        console.log('Adcionar tarefa');
+        let tarefa = entrada();
+        const id = tarefas.length + 1;
+        tarefas.push({
+            id: id, 
+            tarefa: tarefa, 
+            realizada: false
+        });
+
+        entrada('Tarefa adicionada com sucesso!')
     }
 
     if (opcao == 4) {
-        console.log('Concluir Tarefas');
-        for (var cont in tarefas){
-            if(tarefas[cont].realizada == false){
-            console.log(tarefas[cont].id + ' - ' + tarefas[cont].tarefa);
-            }
-        }  
-        
-        const concluida = entrada('Insira o Id da tarefa a ser concluida: ');
+        console.log('Concluir tarefa');
+        for (let cont in tarefas) {
+            if (!tarefas[cont].realizada) {
+                console.log(tarefas[cont].id + ' - ' + tarefas[cont].tarefa);
+            }                     
+        }
+        const concluida = entrada('Insira o ID da tarefa a ser concluída: ');
         const editar = concluida - 1;
         const txtTarefaEdit = tarefas[editar].tarefa;
-        
         tarefas[editar] = {
-                
-            id: editar, 
+            id: editar + 1, 
             tarefa: txtTarefaEdit, 
-            realizada: true,
+            realizada: true
         }
+
+        entrada('Tarefa concluída!');
     }
 
     if (opcao == 5) {
-        console.log('Excluir tarefa');
-        for (var cont in tarefas){
-            if(tarefas[cont].realizada == true){
-            console.log(tarefas[cont].id + ' - ' + tarefas[cont].tarefa);
-            }
-        }  
-        
-        const excluir = entrada('Insira o Id da tarefa a ser excluida: ');
-        const t_excluir = excluir;
+        console.log('Excluir tarefa'); 
+        for (let cont in tarefas) {
+            if (tarefas[cont].realizada == true) {
+                console.log(tarefas[cont].id + ' - ' + tarefas[cont].tarefa);
+            }                     
+        }
+        const excluir = entrada('Insira o ID da tarefa a ser excluída: ');
+        const t_excluir = excluir; 
         let tempArray = tarefas;
-        tarefas = tempArray.filter( item => item.id != t_excluir);
-        
+        tarefas = tempArray.filter( item => item.id != t_excluir); 
+
+        // Resetar posições do array
+        let arrayReset = [];
+        for (const i in tarefas) {
+            arrayReset.push(
+                {
+                    id: arrayReset.length + 1, 
+                    tarefa: tarefas[i].tarefa, 
+                    realizada: tarefas[i].realizada                    
+                }
+            );
+        }
+        tarefas = arrayReset;
+        entrada('Tarefa excluída com sucesso!')
     }
 
-}while(opcao != 0);
+} while (opcao != 0); 
 
-console.log('Programa Encerrado!');
+console.log('Programa encerrado!');
 entrada();
-        
